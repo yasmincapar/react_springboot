@@ -101,4 +101,25 @@ public class EmployeeService {
         return updatedEmployee;
     }
 
+    public Employee createEmployee(Employee employee) {
+        EmployeeEntity employeeEntity = EmployeeEntity.builder()
+                .firstName(employee.getFirstName())
+                .lastName(employee.getLastName())
+                .email(employee.getEmail())
+                .build();
+        employeeEntity = repository.save(employeeEntity);
+
+        // Convert EmployeeEntity back to Employee DTO
+        Employee savedEmployee = Employee.builder()
+                .firstName(employeeEntity.getFirstName())
+                .lastName(employeeEntity.getLastName())
+                .email(employeeEntity.getEmail())
+                .build();
+
+        return savedEmployee;
+    }
+
 }
+
+
+

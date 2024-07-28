@@ -36,11 +36,12 @@ public class EmployeeController {
      *
      * @param employee
      * @return
-     */
+
     @PostMapping("/registerEmployee")
     public long registerUser(@RequestBody Employee employee) {
         return service.registerTheEmployee(employee);
     }
+    */
 
     /**
      *Using the method below we will get employee
@@ -85,8 +86,6 @@ public class EmployeeController {
         return updatedEmployee;
     }
 
-
-
     //Delete return the id in which the user has been deleted
     //we enter the id of which the user we want to delete
     //we give the id and we can return all the users left or the number of users left
@@ -98,5 +97,11 @@ public class EmployeeController {
         return "The Employee has been deleted successfully";
     }
 
+
+    @PostMapping("/createEmployee")
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+        Employee savedEmployee = service.createEmployee(employee);
+        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
+    }
 
 }
